@@ -1,0 +1,71 @@
+-- Doctors table
+CREATE TABLE Doctors (
+    DoctorID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Specialization VARCHAR(100),
+    Phone VARCHAR(50)
+);
+
+-- Patients table
+CREATE TABLE Patients (
+    PatientID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Age INT,
+    Gender VARCHAR(50),
+    Phone VARCHAR(50)
+);
+
+-- Appointments table
+CREATE TABLE Appointments (
+    AppointmentID INT PRIMARY KEY,
+    Date DATE,
+    Time TIME,
+    Status VARCHAR(50),
+    DoctorID INT,
+    PatientID INT,
+    FOREIGN KEY (DoctorID) REFERENCES Doctors(DoctorID),
+    FOREIGN KEY (PatientID) REFERENCES Patients(PatientID)
+);
+
+-- Departments table
+CREATE TABLE Departments (
+    DepartmentID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Location VARCHAR(100)
+);
+
+--Insert dummy Data Into Table
+
+-- Inserting into Doctors
+INSERT INTO Doctors (DoctorID, Name, Specialization, Phone) VALUES
+(1, 'Dr. John Doe', 'Cardiology', '555-1234'),
+(2, 'Dr. Jane Smith', 'Neurology', '555-2345'),
+(3, 'Dr. Emily Davis', 'Orthopedics', '555-3456'),
+(4, 'Dr. Michael Brown', 'Pediatrics', '555-4567'),
+(5, 'Dr. Sarah Wilson', 'Dermatology', '555-5678');
+
+-- Inserting into Patients
+INSERT INTO Patients (PatientID, Name, Age, Gender, Phone) VALUES
+(1, 'Alice Johnson', 30, 'Female', '555-6789'),
+(2, 'Bob Smith', 45, 'Male', '555-7890'),
+(3, 'Charlie Brown', 60, 'Male', '555-8901'),
+(4, 'Diana Green', 40, 'Female', '555-9012'),
+(5, 'Eva White', 50, 'Female', '555-0123');
+
+-- Inserting into Appointments
+INSERT INTO Appointments (AppointmentID, Date, Time, Status, DoctorID, PatientID) VALUES
+(1, '2024-12-22', '10:00:00', 'Scheduled', 1, 1),
+(2, '2024-12-22', '11:00:00', 'Scheduled', 2, 2),
+(3, '2024-12-22', '14:00:00', 'Completed', 3, 3),
+(4, '2024-12-23', '09:00:00', 'Scheduled', 4, 4),
+(5, '2024-12-23', '15:00:00', 'Cancelled', 5, 5);
+
+-- Inserting into Departments
+INSERT INTO Departments (DepartmentID, Name, Location) VALUES
+(1, 'Cardiology', 'Building A'),
+(2, 'Neurology', 'Building B'),
+(3, 'Orthopedics', 'Building C'),
+(4, 'Pediatrics', 'Building D'),
+(5, 'Dermatology', 'Building E');
+
+
